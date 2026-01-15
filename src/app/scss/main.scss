@@ -1,0 +1,23 @@
+// ============================================================================
+// SCSS Main Entry Point - ITCSS (Inverted Triangle CSS) Architecture
+// ============================================================================
+
+// 1. UTILITIES (Variables, Mixins, Functions)
+// ============================================================================
+@import './01_utilities/variables';
+@import './01_utilities/functions';
+
+// 2. BASE (Reset, Typography)
+// ============================================================================
+@import './02_base/reset';
+@import './02_base/typography';
+
+// 3. GLOBAL (Utilities, Animations)
+// ============================================================================
+@import './03_global/utilities';
+@import './03_global/animations';
+
+// 4. COMPONENTS (BEM Components)
+// ============================================================================
+@import './04_components/c-button';
+@import './04_components/c-panel';

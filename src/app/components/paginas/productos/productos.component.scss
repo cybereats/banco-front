@@ -1,0 +1,43 @@
+@import '../../../scss/main.scss';
+
+.productos-container {
+  min-height: 100vh;
+  background: $color-light;
+  color: $color-dark;
+  padding: $spacing-2xl;
+}
+
+.productos-header {
+  max-width: 1200px;
+  margin: 0 auto $spacing-2xl;
+
+  .btn-back {
+    background: $color-primary;
+    border: 1px solid $color-primary;
+    color: white;
+    padding: $spacing-md $spacing-lg;
+    border-radius: $radius-lg;
+    cursor: pointer;
+    margin-bottom: $spacing-lg;
+    transition: all $transition-base;
+
+    &:hover {
+      background: #1b437d;
+    }
+  }
+
+  h1 {
+    margin: 0;
+  }
+}
+
+.productos-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+  padding: $spacing-3xl;
+  background: white;
+  border-radius: $radius-xl;
+  border: 1px solid $color-border;
+  box-shadow: $shadow-md;
+}

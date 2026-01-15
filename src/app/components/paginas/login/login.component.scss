@@ -1,0 +1,318 @@
+@import '../../../scss/main.scss';
+
+.login-container {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $color-light;
+  overflow: hidden;
+
+  .login-wrapper {
+    position: relative;
+    z-index: 10;
+    background: white;
+    border-radius: $radius-xl;
+    box-shadow: $shadow-xl;
+    width: 100%;
+    max-width: 420px;
+    padding: $spacing-3xl $spacing-2xl;
+    border: 1px solid $color-border;
+    animation: slideIn 0.35s ease-out;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.logo-section {
+  text-align: center;
+  margin-bottom: $spacing-3xl;
+
+  .logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: $spacing-md;
+    margin-bottom: $spacing-lg;
+
+    .logo-icon {
+      width: 50px;
+      height: 50px;
+      background: $color-primary;
+      border-radius: $radius-lg;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: $font-size-2xl;
+      color: white;
+      font-weight: $font-weight-bold;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: $font-size-4xl;
+      color: $color-dark;
+      font-weight: $font-weight-bold;
+    }
+  }
+
+  .tagline {
+    margin: 0;
+    color: $color-text-light;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    letter-spacing: 0.5px;
+  }
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+  margin-bottom: $spacing-2xl;
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-sm;
+
+    label {
+      font-size: $font-size-xs;
+      font-weight: $font-weight-semibold;
+      color: $color-dark;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    input {
+      padding: $spacing-md $spacing-lg;
+      border: 2px solid $color-border;
+      border-radius: $radius-lg;
+      font-size: $font-size-sm;
+      transition: all $transition-base;
+      font-family: inherit;
+
+      &:focus {
+        outline: none;
+        border-color: #667eea;
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+      }
+
+      &:disabled {
+        background: $color-light;
+        color: $color-border;
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  .btn-primary {
+    padding: $spacing-lg $spacing-xl;
+    background: $color-primary;
+    color: white;
+    border: none;
+    border-radius: $radius-lg;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
+    cursor: pointer;
+    transition: all $transition-base;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: $spacing-sm;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+
+    &:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(31, 77, 143, 0.25);
+    }
+
+    &:active:not(:disabled) {
+      transform: translateY(0);
+    }
+
+    &:disabled {
+      opacity: 0.8;
+      cursor: not-allowed;
+    }
+
+    &.loading {
+      pointer-events: none;
+    }
+
+    .spinner {
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-top-color: white;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+  }
+
+  .error-message {
+    padding: $spacing-md $spacing-lg;
+    background: #fee;
+    color: #c33;
+    border-radius: $radius-md;
+    font-size: $font-size-xs;
+    border-left: 4px solid #c33;
+  }
+}
+
+.demo-section {
+  text-align: center;
+  margin-bottom: $spacing-2xl;
+
+  .divider {
+    margin: 0 0 $spacing-lg 0;
+    color: $color-text-light;
+    font-size: $font-size-xs;
+    position: relative;
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      width: 40%;
+      height: 1px;
+      background: $color-border;
+    }
+
+    &::before {
+      left: 0;
+    }
+
+    &::after {
+      right: 0;
+    }
+  }
+
+  .btn-demo {
+    padding: $spacing-md $spacing-xl;
+    background: transparent;
+    color: $color-primary;
+    border: 2px solid $color-primary;
+    border-radius: $radius-lg;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
+    cursor: pointer;
+    transition: all $transition-base;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+
+    &:hover {
+      background: #eef2f7;
+      transform: translateY(-2px);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+  }
+}
+
+.login-footer {
+  text-align: center;
+  padding-top: $spacing-lg;
+  border-top: 1px solid $color-border;
+
+  p {
+    margin: 0;
+    color: $color-text-light;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+  }
+}
+
+.animated-bg {
+  display: none;
+
+  .gradient-blob {
+    position: absolute;
+    opacity: 0.3;
+    border-radius: 50%;
+    filter: blur(40px);
+    animation: float 15s infinite ease-in-out;
+  }
+
+  .blob-1 {
+    width: 300px;
+    height: 300px;
+    background: rgba(255, 255, 255, 0.5);
+    top: -50px;
+    left: -50px;
+    animation-delay: 0s;
+  }
+
+  .blob-2 {
+    width: 400px;
+    height: 400px;
+    background: rgba(255, 255, 255, 0.3);
+    bottom: -100px;
+    right: -50px;
+    animation-delay: -5s;
+  }
+
+  .blob-3 {
+    width: 250px;
+    height: 250px;
+    background: rgba(102, 126, 234, 0.2);
+    top: 50%;
+    left: 50%;
+    animation-delay: -10s;
+  }
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0px) translateX(0px);
+  }
+
+  33% {
+    transform: translateY(-30px) translateX(20px);
+  }
+
+  66% {
+    transform: translateY(30px) translateX(-20px);
+  }
+}
+
+@media (max-width: 480px) {
+  .login-container {
+    .login-wrapper {
+      max-width: 100%;
+      margin: $spacing-lg;
+      padding: $spacing-2xl $spacing-md;
+    }
+  }
+
+  .logo-section {
+    margin-bottom: $spacing-2xl;
+
+    .logo h1 {
+      font-size: $font-size-3xl;
+    }
+  }
+
+  .login-form {
+    gap: $spacing-lg;
+  }
+}

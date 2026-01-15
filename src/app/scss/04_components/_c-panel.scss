@@ -1,0 +1,92 @@
+// Panel Block
+.c-panel {
+  background-color: white;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-md;
+  overflow: hidden;
+  transition: box-shadow $transition-base;
+
+  // Header Element
+  &__header {
+    padding: $spacing-lg;
+    border-bottom: 1px solid $color-border;
+    background-color: $color-light;
+  }
+
+  &__title {
+    margin: 0;
+    font-size: $font-size-xl;
+    font-weight: $font-weight-bold;
+    color: $color-dark;
+  }
+
+  // Body Element
+  &__body {
+    padding: $spacing-lg;
+  }
+
+  // Footer Element
+  &__footer {
+    padding: $spacing-lg;
+    border-top: 1px solid $color-border;
+    background-color: $color-light;
+    display: flex;
+    gap: $spacing-md;
+    justify-content: flex-end;
+  }
+
+  // Hover Modifier
+  &--hover {
+    &:hover {
+      box-shadow: $shadow-lg;
+    }
+  }
+
+  // Interactive Modifier
+  &--interactive {
+    cursor: pointer;
+    transition: all $transition-base;
+
+    &:hover {
+      box-shadow: $shadow-lg;
+      transform: translateY(-2px);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+  }
+
+  // Accent Modifier
+  &--accent {
+    border-left: 4px solid $color-primary;
+  }
+
+  // Danger Modifier
+  &--danger {
+    border-left: 4px solid $color-danger;
+
+    #{&}__header {
+      background-color: rgba($color-danger, 0.1);
+    }
+  }
+
+  // Success Modifier
+  &--success {
+    border-left: 4px solid $color-success;
+
+    #{&}__header {
+      background-color: rgba($color-success, 0.1);
+    }
+  }
+
+  // No Padding Modifier
+  &--flush {
+
+    #{&}__header,
+    #{&}__body,
+    #{&}__footer {
+      padding: 0;
+    }
+  }
+}

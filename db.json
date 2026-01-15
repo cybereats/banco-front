@@ -1,0 +1,300 @@
+{
+  "TipoMovimientoBancario": [
+    {
+      "id": 1,
+      "descripcion": "Debe"
+    },
+    {
+      "id": 2,
+      "descripcion": "Haber"
+    }
+  ],
+  "OrigenMovimientoBancario": [
+    {
+      "id": 1,
+      "descripcion": "Transferencia"
+    },
+    {
+      "id": 2,
+      "descripcion": "Domiciliacion"
+    },
+    {
+      "id": 3,
+      "descripcion": "TarjetaBancaria"
+    },
+    {
+      "id": 4,
+      "descripcion": "Interes"
+    }
+  ],
+  "Cliente": [
+    {
+      "id": 1,
+      "login": "juan@cyberbank.com",
+      "password": "$2a$10$dXJ3QH5bP7K9mK8yL1P2QuOpS0Z5V6K7J8L9M0N1O2P3Q4R5S6T7U8",
+      "nombre": "Juan",
+      "apellido1": "Pérez",
+      "apellido2": "García",
+      "dni": "12345678A",
+      "api_token": "token_juan_123456"
+    },
+    {
+      "id": 2,
+      "login": "maria@cyberbank.com",
+      "password": "$2a$10$eYs9bK6cP9L5mK3yL2P1QuOpS0Z5V6K7J8L9M0N1O2P3Q4R5S6T7U9",
+      "nombre": "María",
+      "apellido1": "García",
+      "apellido2": "López",
+      "dni": "87654321B",
+      "api_token": "token_maria_123456"
+    },
+    {
+      "id": 3,
+      "login": "carlos@cyberbank.com",
+      "password": "$2a$10$fZt9cK7dQ9M5nL4zM3P2RuPqT1Z6W7K8J9L0M1N2O3P4Q5R6S7T8U0",
+      "nombre": "Carlos",
+      "apellido1": "López",
+      "apellido2": "Martínez",
+      "dni": "11223344C",
+      "api_token": "token_carlos_123456"
+    }
+  ],
+  "CuentaBancaria": [
+    {
+      "id": 1,
+      "iban": "ES9121000418450200051332",
+      "saldo": 52240.50,
+      "cliente_id": 1
+    },
+    {
+      "id": 2,
+      "iban": "ES9121000418450200051333",
+      "saldo": 15780.25,
+      "cliente_id": 1
+    },
+    {
+      "id": 3,
+      "iban": "ES9121000418450200051334",
+      "saldo": 32450.75,
+      "cliente_id": 1
+    },
+    {
+      "id": 4,
+      "iban": "ES9121000418450200051335",
+      "saldo": 8920.30,
+      "cliente_id": 2
+    },
+    {
+      "id": 5,
+      "iban": "ES9121000418450200051336",
+      "saldo": 22100.00,
+      "cliente_id": 2
+    },
+    {
+      "id": 6,
+      "iban": "ES9121000418450200051337",
+      "saldo": 45000.00,
+      "cliente_id": 3
+    }
+  ],
+  "TarjetaCredito": [
+    {
+      "id": 1,
+      "numeroTarjeta": "4532123456789876",
+      "fechaCaducidad": "2026-12-31",
+      "cvc": "123",
+      "nombreCompleto": "Juan Pérez García",
+      "cuenta_id": 1
+    },
+    {
+      "id": 2,
+      "numeroTarjeta": "5425123456789001",
+      "fechaCaducidad": "2027-08-31",
+      "cvc": "456",
+      "nombreCompleto": "Juan Pérez García",
+      "cuenta_id": 1
+    },
+    {
+      "id": 3,
+      "numeroTarjeta": "5425123456789876",
+      "fechaCaducidad": "2028-03-31",
+      "cvc": "789",
+      "nombreCompleto": "Juan Pérez García",
+      "cuenta_id": 2
+    },
+    {
+      "id": 4,
+      "numeroTarjeta": "4532123456780001",
+      "fechaCaducidad": "2027-06-30",
+      "cvc": "321",
+      "nombreCompleto": "Juan Pérez García",
+      "cuenta_id": 3
+    },
+    {
+      "id": 5,
+      "numeroTarjeta": "5425987654321234",
+      "fechaCaducidad": "2026-09-30",
+      "cvc": "654",
+      "nombreCompleto": "María García López",
+      "cuenta_id": 4
+    },
+    {
+      "id": 6,
+      "numeroTarjeta": "4532987654321234",
+      "fechaCaducidad": "2027-12-31",
+      "cvc": "987",
+      "nombreCompleto": "María García López",
+      "cuenta_id": 5
+    },
+    {
+      "id": 7,
+      "numeroTarjeta": "5425555555555555",
+      "fechaCaducidad": "2028-06-30",
+      "cvc": "111",
+      "nombreCompleto": "Carlos López Martínez",
+      "cuenta_id": 6
+    }
+  ],
+  "MovimientoBancario": [
+    {
+      "id": 1,
+      "importe": 85.30,
+      "concepto": "Supermercado El Corte",
+      "fecha": "2026-01-15T10:30:00Z",
+      "cuenta_id": 1,
+      "tipo_id": 1,
+      "origen_id": 3,
+      "tarjeta_id": 1
+    },
+    {
+      "id": 2,
+      "importe": 2500.00,
+      "concepto": "Nómina - Salario Mensual",
+      "fecha": "2026-01-14T09:15:00Z",
+      "cuenta_id": 1,
+      "tipo_id": 2,
+      "origen_id": 1,
+      "tarjeta_id": null
+    },
+    {
+      "id": 3,
+      "importe": 12.99,
+      "concepto": "Netflix Subscription",
+      "fecha": "2026-01-13T08:00:00Z",
+      "cuenta_id": 1,
+      "tipo_id": 1,
+      "origen_id": 2,
+      "tarjeta_id": null
+    },
+    {
+      "id": 4,
+      "importe": 45.60,
+      "concepto": "Gasolinera Repsol",
+      "fecha": "2026-01-12T18:45:00Z",
+      "cuenta_id": 1,
+      "tipo_id": 1,
+      "origen_id": 3,
+      "tarjeta_id": 1
+    },
+    {
+      "id": 5,
+      "importe": 500.00,
+      "concepto": "Transferencia a cuenta de ahorro",
+      "fecha": "2026-01-10T16:20:00Z",
+      "cuenta_id": 1,
+      "tipo_id": 1,
+      "origen_id": 1,
+      "tarjeta_id": null
+    },
+    {
+      "id": 6,
+      "importe": 500.00,
+      "concepto": "Transferencia recibida - Cuenta Principal",
+      "fecha": "2026-01-10T16:15:00Z",
+      "cuenta_id": 2,
+      "tipo_id": 2,
+      "origen_id": 1,
+      "tarjeta_id": null
+    },
+    {
+      "id": 7,
+      "importe": 12.45,
+      "concepto": "Intereses bancarios",
+      "fecha": "2026-01-01T00:00:00Z",
+      "cuenta_id": 2,
+      "tipo_id": 2,
+      "origen_id": 4,
+      "tarjeta_id": null
+    },
+    {
+      "id": 8,
+      "importe": 1200.00,
+      "concepto": "Pago de proveedores",
+      "fecha": "2026-01-15T11:30:00Z",
+      "cuenta_id": 3,
+      "tipo_id": 1,
+      "origen_id": 1,
+      "tarjeta_id": null
+    },
+    {
+      "id": 9,
+      "importe": 3500.00,
+      "concepto": "Ingreso - Cliente Tech Solutions",
+      "fecha": "2026-01-14T14:45:00Z",
+      "cuenta_id": 3,
+      "tipo_id": 2,
+      "origen_id": 1,
+      "tarjeta_id": null
+    },
+    {
+      "id": 10,
+      "importe": 150.50,
+      "concepto": "Restaurante La Bella Vista",
+      "fecha": "2026-01-15T12:00:00Z",
+      "cuenta_id": 4,
+      "tipo_id": 1,
+      "origen_id": 3,
+      "tarjeta_id": 5
+    },
+    {
+      "id": 11,
+      "importe": 2000.00,
+      "concepto": "Nómina",
+      "fecha": "2026-01-14T09:00:00Z",
+      "cuenta_id": 4,
+      "tipo_id": 2,
+      "origen_id": 1,
+      "tarjeta_id": null
+    },
+    {
+      "id": 12,
+      "importe": 120.00,
+      "concepto": "Recibo de Electricidad",
+      "fecha": "2026-01-05T08:00:00Z",
+      "cuenta_id": 4,
+      "tipo_id": 1,
+      "origen_id": 2,
+      "tarjeta_id": null
+    },
+    {
+      "id": 13,
+      "importe": 5000.00,
+      "concepto": "Contrato completado - Proyecto Web",
+      "fecha": "2026-01-13T10:30:00Z",
+      "cuenta_id": 6,
+      "tipo_id": 2,
+      "origen_id": 1,
+      "tarjeta_id": null
+    },
+    {
+      "id": 14,
+      "importe": 350.00,
+      "concepto": "Compra en Tienda Tech Store",
+      "fecha": "2026-01-12T19:20:00Z",
+      "cuenta_id": 6,
+      "tipo_id": 1,
+      "origen_id": 3,
+      "tarjeta_id": 7
+    }
+  ]
+}

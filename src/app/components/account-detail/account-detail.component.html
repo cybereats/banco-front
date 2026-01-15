@@ -1,0 +1,146 @@
+<div class="account-detail-container" *ngIf="account() || loading()">
+  <header class="detail-header">
+    <div class="header-left">
+      <button class="btn-back" (click)="goBack()">← Volver</button>
+      <div class="account-name" *ngIf="account()">
+        <h1>{{ account()!.nombre }}</h1>
+        <div class="iban-wrapper">
+          <p>{{ getIBANDisplay(account()!.iban) }}</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="detail-content">
+    <div *ngIf="loading()" class="loading-state">
+      <div class="spinner"></div>
+      <p>Cargando detalles de la cuenta...</p>
+    </div>
+
+    <div *ngIf="!loading() && account()" class="account-info">
+      <section class="balance-card">
+        <div class="balance-info">
+          <span class="label">Saldo Disponible</span>
+          <div class="amount">
+            {{ account()!.saldo.toLocaleString('es-ES', {minimumFractionDigits: 2, maximumFractionDigits: 2}) }}
+            <span class="currency">{{ account()!.moneda }}</span>
+          </div>
+        </div>
+        <div class="account-type">
+          <span *ngIf="account()!.tipo === 'checking'">Cuenta Corriente</span>
+          <span *ngIf="account()!.tipo === 'savings'">Cuenta de Ahorro</span>
+        </div>
+      </section>
+
+      <nav class="tabs-navigation">
+        <button class="tab-button" [class.active]="activeTab() === 'overview'" (click)="setActiveTab('overview')">
+          Resumen
+        </button>
+        <button class="tab-button" [class.active]="activeTab() === 'cards'" (click)="setActiveTab('cards')">
+          Tarjetas ({{ (account()?.cards?.length) || 0 }})
+        </button>
+        <button class="tab-button" [class.active]="activeTab() === 'transactions'"
+          (click)="setActiveTab('transactions')">
+          Movimientos
+        </button>
+      </nav>
+
+      <section class="tab-content" *ngIf="activeTab() === 'overview'">
+        <div class="overview-grid">
+          <div class="overview-section">
+            <h3>Tarjetas Asociadas</h3>
+            <div class="cards-preview">
+              <div *ngFor="let card of account()!.cards" class="card-preview"
+                [class.selected]="selectedCard()?.numeroTarjeta === card.numeroTarjeta" (click)="selectCard(card)">
+                <div class="card-brand">
+                  <span *ngIf="card.marca === 'visa'">💳 VISA</span>
+                  <span *ngIf="card.marca === 'mastercard'">💳 Mastercard</span>
+                </div>
+                <div class="card-number-wrapper">
+                  <div class="card-number">{{ getCardNumberDisplay(card.numeroTarjeta) }}</div>
+                </div>
+                <div class="card-details">
+                  <div class="detail">
+                    <span class="label">Titular</span>
+                    <span class="value">{{ card.nombreCompleto }}</span>
+                  </div>
+                  <div class="detail">
+                    <span class="label">Vencimiento</span>
+                    <span class="value">{{ card.fechaCaducidad.substring(5, 10) }}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="overview-section">
+            <h3>Últimos Movimientos</h3>
+            <div class="recent-transactions">
+              <div *ngFor="let transaction of account()!.transactions?.slice(0, 5)" class="transaction-item">
+                <div class="transaction-left">
+                  <span class="transaction-icon">{{ getTransactionIcon(transaction.origenMovimientoBancario) }}</span>
+                  <div class="transaction-info">
+                    <span class="description">{{ transaction.concepto }}</span>
+                    <span class="date">{{ formatDate(transaction.fecha) }}</span>
+                  </div>
+                </div>
+                <span class="amount" [class.positive]="transaction.tipoMovimientoBancario === 'Haber'">
+                  {{ transaction.tipoMovimientoBancario === 'Haber' ? '+' : '-' }}{{
+                  transaction.importe.toLocaleString('es-ES',
+                  {minimumFractionDigits: 2, maximumFractionDigits: 2}) }}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="tab-content" *ngIf="activeTab() === 'cards'">
+        <div class="cards-list">
+          <div *ngFor="let card of account()!.cards" class="card-item">
+            <div class="card-chip">💳</div>
+            <div class="card-info">
+              <h4>{{ card.nombreCompleto }}</h4>
+              <div class="card-number-wrapper">
+                <p>{{ getCardNumberDisplay(card.numeroTarjeta) }}</p>
+              </div>
+              <div class="card-meta">
+                <span>Expira: {{ card.fechaCaducidad.substring(5, 10) }}</span>
+                <span class="badge" [class.credit]="card.tipo === 'credit'" [class.debit]="card.tipo === 'debit'">
+                  {{ card.tipo === 'credit' ? 'Crédito' : 'Débito' }}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="tab-content" *ngIf="activeTab() === 'transactions'">
+        <div class="transactions-list">
+          <div class="transactions-header">
+            <h3>Historial Completo de Movimientos</h3>
+          </div>
+
+          <div *ngFor="let transaction of account()!.transactions" class="transaction-row">
+            <div class="transaction-left">
+              <span class="transaction-icon">{{ getTransactionIcon(transaction.origenMovimientoBancario) }}</span>
+              <div class="transaction-info">
+                <span class="description">{{ transaction.concepto }}</span>
+                <span class="date">{{ formatDate(transaction.fecha) }}</span>
+              </div>
+            </div>
+            <span class="amount" [class.positive]="transaction.tipoMovimientoBancario === 'Haber'">
+              {{ transaction.tipoMovimientoBancario === 'Haber' ? '+' : '-' }}{{
+              transaction.importe.toLocaleString('es-ES',
+              {minimumFractionDigits: 2, maximumFractionDigits: 2}) }}
+            </span>
+          </div>
+
+          <div *ngIf="!(account()?.transactions?.length)" class="empty-state">
+            <p>No hay movimientos en esta cuenta</p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+</div>

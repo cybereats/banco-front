@@ -1,0 +1,100 @@
+// Button Block
+.c-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-sm;
+  padding: $spacing-md $spacing-lg;
+  font-size: $font-size-base;
+  font-weight: $font-weight-semibold;
+  border-radius: $radius-lg;
+  transition: all $transition-base;
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  cursor: pointer;
+  border: none;
+
+  &:focus-visible {
+    outline-color: $color-primary;
+  }
+
+  // Primary Modifier
+  &--primary {
+    background-color: $color-primary;
+    color: white;
+    box-shadow: $shadow-md;
+
+    &:hover:not(:disabled) {
+      background-color: #1b437d;
+      box-shadow: $shadow-lg;
+    }
+
+    &:active:not(:disabled) {
+      background-color: #163863;
+      box-shadow: $shadow-md;
+    }
+  }
+
+  // Secondary Modifier
+  &--secondary {
+    background-color: transparent;
+    color: $color-primary;
+    border: 2px solid $color-primary;
+
+    &:hover:not(:disabled) {
+      background-color: #e9eff7;
+    }
+
+    &:active:not(:disabled) {
+      background-color: #dbe6f2;
+    }
+  }
+
+  // Danger Modifier
+  &--danger {
+    background-color: $color-danger;
+    color: white;
+
+    &:hover:not(:disabled) {
+      background-color: #dc2626;
+    }
+  }
+
+  // Success Modifier
+  &--success {
+    background-color: $color-success;
+    color: white;
+
+    &:hover:not(:disabled) {
+      background-color: #0f9f6e;
+    }
+  }
+
+  // Size Modifiers
+  &--sm {
+    padding: $spacing-sm $spacing-md;
+    font-size: $font-size-sm;
+  }
+
+  &--lg {
+    padding: $spacing-lg $spacing-xl;
+    font-size: $font-size-lg;
+  }
+
+  // Full Width
+  &--full {
+    width: 100%;
+  }
+
+  // Icon Only
+  &--icon {
+    padding: $spacing-md;
+    aspect-ratio: 1;
+  }
+
+  // Disabled State
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}

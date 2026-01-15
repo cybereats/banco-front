@@ -1,0 +1,405 @@
+@import '../../../scss/main.scss';
+
+.dashboard-container {
+  min-height: 100vh;
+  background: $color-light;
+}
+
+.dashboard-header {
+  background: #1f3a5f;
+  padding: $spacing-md 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+
+  .header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 $spacing-2xl;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .header-left {
+    .logo-small {
+      display: flex;
+      align-items: center;
+      gap: $spacing-md;
+      color: white;
+      font-weight: $font-weight-bold;
+      font-size: $font-size-lg;
+
+      .logo-icon {
+        width: 40px;
+        height: 40px;
+        background: rgba(255, 255, 255, 0.12);
+        border-radius: $radius-md;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: $font-size-2xl;
+      }
+    }
+  }
+
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: $spacing-2xl;
+
+    .welcome-text {
+      color: rgba(255, 255, 255, 0.9);
+      font-weight: $font-weight-medium;
+      font-size: $font-size-sm;
+    }
+
+    .btn-logout {
+      padding: $spacing-sm $spacing-lg;
+      background: rgba(255, 255, 255, 0.12);
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: $radius-md;
+      font-size: $font-size-xs;
+      font-weight: $font-weight-semibold;
+      cursor: pointer;
+      transition: all $transition-base;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.2);
+        border-color: rgba(255, 255, 255, 0.35);
+      }
+    }
+  }
+}
+
+.dashboard-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: $spacing-2xl;
+}
+
+.balance-section {
+  margin-bottom: $spacing-3xl;
+
+  .balance-card {
+    background: white;
+    border-radius: $radius-xl;
+    padding: $spacing-3xl;
+    box-shadow: $shadow-lg;
+    border: 1px solid $color-border;
+    animation: slideInUp 0.4s ease-out;
+
+    h2 {
+      margin: 0 0 $spacing-lg 0;
+      color: $color-text-light;
+      font-size: $font-size-sm;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: $font-weight-semibold;
+    }
+
+    .balance-amount {
+      font-size: $font-size-4xl;
+      font-weight: $font-weight-bold;
+      color: $color-dark;
+      margin-bottom: $spacing-sm;
+    }
+
+    .balance-subtitle {
+      margin: 0;
+      color: $color-text-light;
+      font-size: $font-size-xs;
+    }
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.accounts-section {
+  h2 {
+    color: $color-dark;
+    font-size: $font-size-3xl;
+    font-weight: $font-weight-bold;
+    margin: 0 0 $spacing-2xl 0;
+  }
+
+  .loading-state {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: $spacing-3xl $spacing-2xl;
+    background: white;
+    border-radius: $radius-xl;
+    border: 1px solid $color-border;
+    box-shadow: $shadow-sm;
+
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 4px solid rgba(31, 77, 143, 0.15);
+      border-top-color: $color-primary;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin-bottom: $spacing-lg;
+    }
+
+    p {
+      color: $color-text-light;
+      font-size: $font-size-base;
+      margin: 0;
+    }
+  }
+
+  .empty-state {
+    text-align: center;
+    padding: $spacing-3xl $spacing-2xl;
+    background: white;
+    border-radius: $radius-xl;
+    border: 1px solid $color-border;
+    box-shadow: $shadow-sm;
+
+    p {
+      color: $color-text-light;
+      font-size: $font-size-base;
+      margin: 0;
+    }
+  }
+
+  .accounts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: $spacing-xl;
+  }
+}
+
+.account-card {
+  background: white;
+  border-radius: $radius-lg;
+  padding: $spacing-xl;
+  cursor: pointer;
+  transition: all $transition-base;
+  box-shadow: $shadow-sm;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid $color-border;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: #1f4d8f;
+  }
+
+  &[data-type='checking'] {
+    &::before {
+      background: #1f4d8f;
+    }
+  }
+
+  &[data-type='savings'] {
+    &::before {
+      background: #0f766e;
+    }
+  }
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: $shadow-md;
+
+    .arrow {
+      transform: translateX(5px);
+    }
+  }
+
+  .account-header {
+    display: flex;
+    align-items: flex-start;
+    gap: $spacing-lg;
+    margin-bottom: $spacing-lg;
+
+    .account-icon {
+      width: 50px;
+      height: 50px;
+      background: #eef2f7;
+      border-radius: $radius-lg;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: $font-size-2xl;
+      flex-shrink: 0;
+    }
+
+    .account-title {
+      flex: 1;
+
+      h3 {
+        margin: 0 0 $spacing-sm 0;
+        font-size: $font-size-base;
+        font-weight: $font-weight-semibold;
+        color: $color-dark;
+      }
+
+      .account-number-wrapper {
+        display: flex;
+        align-items: center;
+        gap: $spacing-sm;
+      }
+
+      .account-number {
+        margin: 0;
+        font-size: $font-size-xs;
+        color: $color-text-light;
+        font-family: 'Courier New', monospace;
+        flex: 1;
+      }
+
+      .btn-toggle-iban {
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        font-size: $font-size-base;
+        padding: $spacing-xs;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all $transition-base;
+        flex-shrink: 0;
+
+        &:hover {
+          transform: scale(1.2);
+        }
+
+        span {
+          display: inline-block;
+        }
+      }
+    }
+  }
+
+  .account-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, $color-border, transparent);
+    margin: $spacing-lg 0;
+  }
+
+  .account-balance {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-sm;
+    margin-bottom: $spacing-lg;
+
+    .label {
+      font-size: $font-size-xs;
+      color: $color-text-light;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-weight: $font-weight-semibold;
+    }
+
+    .amount {
+      font-size: $font-size-2xl;
+      font-weight: $font-weight-bold;
+      color: $color-dark;
+    }
+  }
+
+  .account-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .card-count {
+      font-size: $font-size-xs;
+      color: $color-text-light;
+    }
+
+    .arrow {
+      color: $color-primary;
+      font-weight: $font-weight-bold;
+      transition: transform $transition-base;
+    }
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (min-width: $breakpoint-lg) {
+  .dashboard-header {
+    .header-content {
+      padding: 0 $spacing-xl;
+    }
+  }
+
+  .dashboard-content {
+    padding: $spacing-xl;
+  }
+
+  .accounts-section {
+    .accounts-grid {
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: $spacing-lg;
+    }
+  }
+}
+
+@media (min-width: $breakpoint-md) {
+  .dashboard-header {
+    .header-content {
+      flex-direction: column;
+      gap: $spacing-lg;
+    }
+
+    .header-right {
+      width: 100%;
+      justify-content: space-between;
+    }
+  }
+
+  .dashboard-content {
+    padding: $spacing-lg;
+  }
+
+  .balance-section {
+    margin-bottom: $spacing-2xl;
+
+    .balance-card {
+      padding: $spacing-2xl;
+
+      .balance-amount {
+        font-size: $font-size-3xl;
+      }
+    }
+  }
+
+  .accounts-section {
+    h2 {
+      font-size: $font-size-2xl;
+    }
+
+    .accounts-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+}
